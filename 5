@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  char name[6][50] = {"Lahore Qalanadrs", "Karachi Kings",
+                      "Peshawar Zalmi",   "Quetta Gladiators",
+                      "Islamabad United", "Multan Sultans"};
+                      
+  int point[6] = {0, 0, 0, 0, 0, 0};
+  int played[6] = {0, 0, 0, 0, 0, 0};
+  
+  for (int i = 0; i < 6; i++) {
+    for (int j = i + 1; j < 6; j++) {
+      int team1, team2;
+      char perform[50];
+      cout << "Match: " << name[i] << " vs " << name[j] << endl;
+      cout << "Enter total score of " << name[i] << ": ";
+      cin >> team1;
+      cout << "Enter total score of " << name[j] << ": ";
+      cin >> team2;
+      cout << "Enter top performer: ";
+      cin.ignore();
+      cin.getline(perform, 50);
+
+      if (team1 > team2) {
+        cout << name[i] << " Win the Match!";
+        point[i] += 2;
+      } else if (team1 == team2) {
+        cout << "Match Tied.";
+      } else {
+        cout << name[j] << " Win the Match!";
+        point[j] += 2;
+      }
+      played[i] += 1;
+      played[j] += 1;
+
+      cout << endl << endl;
+      cout << "Top player: " << perform << "\n\n";
+    }
+  }
+  // chatGPT CODE
+  cout << "------ Points Table ------\n";
+  cout << "Team                    Matches Played  Points\n";
+  cout << "-----------------------------------------------\n";
+
+  for (int i = 0; i < 6; i++) {
+    cout << name[i];
+    int spaceCount = 24 - strlen(name[i]);
+    
+    for (int j = 0; j < spaceCount; j++) {
+      cout << " ";
+    }
+    cout << played[i] << "               " << point[i] << "\n";
+  }
